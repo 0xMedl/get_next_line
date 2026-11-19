@@ -19,6 +19,9 @@ The goal of the project is to learn about static variables, dynamic memory manag
 | `get_next_line.c` | `get_next_line`, `read_node`, `fill_stash`, `get_line_len`, `extract_line` |
 | `get_next_line_utils.c` | `has_new_line`, `new_node`, `free_list`, `clean_stash` |
 | `get_next_line.h` | Prototypes, the `t_list` struct, and the default `BUFFER_SIZE` |
+| `get_next_line_bonus.c` | Bonus version of `get_next_line.c` |
+| `get_next_line_utils_bonus.c` | Bonus version of `get_next_line_utils.c` |
+| `get_next_line_bonus.h` | Bonus version of `get_next_line.h` |
  
 ## Instructions
  
@@ -28,6 +31,12 @@ The goal of the project is to learn about static variables, dynamic memory manag
  
 ```sh
 cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c main.c
+```
+ 
+To compile the bonus version:
+ 
+```sh
+cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line_bonus.c get_next_line_utils_bonus.c main.c
 ```
  
 ### Example
@@ -81,6 +90,16 @@ Each call to `get_next_line` does these steps:
  
 Each `read` gives a chunk of `BUFFER_SIZE` bytes, and a line can be longer or shorter than a chunk. With a linked list, each chunk is stored in its own node as it arrives, so the data already read is never copied or reallocated when more data comes in. The line is only built once, at the end, with a single `malloc` of the exact size.
  
+### Bonus
+ 
+The bonus version can read from several file descriptors at the same time, so you can alternate calls between fd 3 and fd 4 without mixing their data. It uses only one `static` variable, which is an array with one stash per file descriptor:
+ 
+```c
+static t_list *stash[1024];
+```
+ 
+`get_next_line` uses `stash[fd]`, so each file descriptor keeps its own leftover. All the other functions are the same as in the mandatory part, because each of them only works on the one list it receives.
+ 
 ### Return values of the helper functions
  
 `read_node` and `fill_stash` return:
@@ -105,4 +124,5 @@ Tested with [gnlTester](https://github.com/Tripouille/gnlTester) with `BUFFER_SI
 - Valgrind documentation: https://valgrind.org/docs/manual/
 ### Use of AI
  
-AI was used to help for understanding Low level Concepts . The code was written by me.
+AI was used to help understand more low level concepts . The code was written by me.
+ 
