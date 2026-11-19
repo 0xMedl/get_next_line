@@ -48,19 +48,6 @@ void    free_list(t_list *stash)
     }
 }
 
-void    append_node(t_list **stash, t_list *node)
-{
-    t_list *current;
-    if(!*stash)
-    {
-        *stash = node;
-        return ;
-    }
-    current = *stash;
-    while(current->next)
-        current = current->next;
-    current->next = node;
-}
 void clean_stash(t_list **stash, size_t len)
 {
     t_list *current;
