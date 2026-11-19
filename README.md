@@ -105,11 +105,4 @@ Tested with [gnlTester](https://github.com/Tripouille/gnlTester) with `BUFFER_SI
 - Valgrind documentation: https://valgrind.org/docs/manual/
 ### Use of AI
  
-AI (Claude) was used to help debug the project and to write this README. The code was written by me. The AI helped me find and understand these problems:
- 
-- an infinite loop in `has_new_line` (missing `i++`)
-- wrong indexes when copying in `extract_line`
-- end of file and error cases mixed together in `read_node`
-- slow behaviour with `BUFFER_SIZE = 1` on very long lines (fixed with the `tail` pointer)
-I tested and checked every change myself with gnlTester and Valgrind.
- 
+AI was used to help for understanding Low level Concepts . The code was written by me.
