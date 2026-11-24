@@ -25,7 +25,7 @@ t_list *new_node()
     node = malloc(sizeof(t_list));
     if (!node)
         return (NULL);
-    node->content = malloc(BUFFER_SIZE + 1);
+    node->content = malloc((size_t)BUFFER_SIZE + 1);
     if (!node->content)
     {
         free(node);
